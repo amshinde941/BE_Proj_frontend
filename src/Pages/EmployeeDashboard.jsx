@@ -1,14 +1,14 @@
 import React from "react";
 import { StudentLayout } from "../Components/Layout";
 import { Dashboard } from "../Components/Class";
-import {
-  Diary,
-  ReportCard,
-  Achievements,
-  SubjectInfo,
-} from "../Components/Student";
+// import {
+//   Diary,
+//   ReportCard,
+//   Achievements,
+//   SubjectInfo,
+// } from "../Components/Student";
 
-function StudentDashboard() {
+function EmployeeDashboard() {
   let Component;
 
   switch (window.location.pathname) {
@@ -32,7 +32,7 @@ function StudentDashboard() {
       );
       break;
 
-    case "/student/diary":
+   /* case "/student/diary":
       Component = <Diary />;
       break;
 
@@ -46,7 +46,7 @@ function StudentDashboard() {
 
     case "/student/diary/subject-info":
       Component = <SubjectInfo />;
-      break;
+      break;*/
 
     default:
       break;
@@ -59,4 +59,4 @@ function StudentDashboard() {
   );
 }
 
-export default StudentDashboard;
+export default EmployeeDashboard;

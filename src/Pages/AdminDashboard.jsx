@@ -1,12 +1,12 @@
 import React from "react";
 import { TeacherLayout } from "../Components/Layout";
-import { Classes, Marks, Students, StudyMaterial, SubjectTeacher } from "../Components/Teacher";
+// import { Classes, Marks, Students, StudyMaterial, SubjectTeacher } from "../Components/Teacher";
 
-const TeacherDashboard = () => {
+const AdminDashboard = () => {
   let Component;
 
   switch (window.location.pathname) {
-    case "/teacher/classes":
+    /*case "/teacher/classes":
       Component = <Classes />;
       break;
     case "/teacher/students":
@@ -16,8 +16,8 @@ const TeacherDashboard = () => {
       Component = <SubjectTeacher />;
       break;
     case "/teacher/study-material":
-      Component =<StudyMaterial/>;
-      break;
+      Component =<StudyMaterial />;
+      break;*/
 
     case "/teacher/events":
       Component = (
@@ -25,9 +25,9 @@ const TeacherDashboard = () => {
       );
       break;
 
-    case "/teacher/marks":
+    /*case "/teacher/marks":
       Component = <Marks/>;
-      break;
+      break;*/
 
     case "/teacher/attendance":
       Component = (
@@ -50,4 +50,4 @@ const TeacherDashboard = () => {
   );
 };
 
-export default TeacherDashboard;
+export default AdminDashboard;

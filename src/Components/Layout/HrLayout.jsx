@@ -15,37 +15,43 @@ const data = {
 const AdminSidebar = [
   {
     id: 1,
-    name: "Classes",
-    to: "/school/classes",
-    switch: "classes",
+    name: "Dashboard",
+    to: "/hr/dashboard",
+    switch: "dashboard",
   },
   {
     id: 2,
-    name: "Student Queries",
-    to: "/school/queries",
-    switch: "queries",
+    name: "Add Employee",
+    to: "/hr/add-employee",
+    switch: "add-employee",
   },
   {
     id: 3,
-    name: "Notice Board",
-    to: "/school/notices",
-    switch: "notices",
+    name: "Recruitment",
+    to: "/hr/recruitment",
+    switch: "recruitment",
   },
   {
     id: 4,
-    name: "Event/Meets",
-    to: "/school/events",
-    switch: "events",
+    name: "Onboarding",
+    to: "/hr/onboarding",
+    switch: "onboarding",
   },
   {
     id: 5,
-    name: "Teachers",
-    to: "/school/teachers",
-    switch: "teachers",
+    name: "Appraisals",
+    to: "/hr/appraisals",
+    switch: "appraisals",
+  },
+  {
+    id: 6,
+    name: "Retention",
+    to: "/hr/retention",
+    switch: "retention",
   },
 ];
 
-const SchoolLayout = ({ children, setCurrent }) => {
+const HrLayout = ({ children, setCurrent }) => {
   const [mobileMenu, setMobileMenu] = useState(false);
 
   return (
@@ -122,4 +128,4 @@ const SchoolLayout = ({ children, setCurrent }) => {
   );
 };
 
-export default SchoolLayout;
+export default HrLayout;

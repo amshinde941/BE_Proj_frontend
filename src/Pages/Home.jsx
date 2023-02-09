@@ -57,17 +57,17 @@ const Home = () => {
     <Layout>
       <div className="max-w-7xl w-11/12 mx-auto my-10">
         <div className="flex flex-row justify-between px-6 py-4">
-          <Link to="/school/classes" className="underline text-blue-400">
-            School Dashboard
+          <Link to="/hr/dashboard" className="underline text-blue-400">
+            Hr Dashboard
           </Link>
           <Link to="/teacher/classes" className="underline text-blue-400">
-            Teacher Dashboard
+            Employee Dashboard
           </Link>
           <Link
             to="/student/class-dashboard"
             className="underline text-blue-400"
           >
-            Student Dashboard
+            Admin Dashboard
           </Link>
         </div>
 
