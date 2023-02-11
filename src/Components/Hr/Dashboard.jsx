@@ -50,7 +50,7 @@ const Dashboard = () => {
   
   return (
     <>
-      <div className="container">
+      <div className="m-10">
 
         {/* PROJECTS */}
         <h1 className="text-2xl font-bold">Projects</h1>

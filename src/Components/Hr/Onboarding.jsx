@@ -45,7 +45,7 @@ const Onboarding = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="m-10">
         <h1 className="text-2xl font-bold">Student Table</h1>
         <hr className="my-2" />
 
