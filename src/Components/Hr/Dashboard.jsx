@@ -14,7 +14,7 @@ const Dashboard = () => {
   const columns = React.useMemo(
     () => [
       {
-        Header: "Name",
+        Header: "Employees",
         accessor: "name",
       },
       {
