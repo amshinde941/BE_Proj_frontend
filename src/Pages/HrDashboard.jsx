@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { HrLayout } from "../Components/Layout";
-import { AddEmployee, Appraisals, Onboarding, Recruitment, Retention } from "../Components/Hr"
+import { AddEmployee, Appraisals, Onboarding, Recruitment, Retention, Dashboard } from "../Components/Hr"
 
 const HrDashboard = () => {
   const [current, setCurrent] = useState("classes");
@@ -9,7 +9,7 @@ const HrDashboard = () => {
   const renderComp = () => {
     switch (current) {
       case "dashboard":
-        return <div className="text-4xl text-bold text-black">Dashboard Open</div>;
+        return <Dashboard />;
         break;
 
       case "add-employee":
