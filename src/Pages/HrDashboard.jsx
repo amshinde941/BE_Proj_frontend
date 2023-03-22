@@ -32,8 +32,8 @@ const HrDashboard = () => {
 
       default:
         return (
-          <div className="text-4xl text-bold text-black">
-            Please select a component
+          <div className="text-bold text-black">
+            <Dashboard />
           </div>
         );
     }
