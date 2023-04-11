@@ -61,13 +61,6 @@ const Dashboard = () => {
           <LineChart />
           <PieChart />
         </div>
-
-        {/* ALL EMPLOYEES */}
-        {/* <h1 className="text-2xl font-bold my-4">All Employees</h1>
-        <hr className="my-2" />
-        <div className="flex gap-2 flex-col">
-          <Table columns={columns} data={data} />
-        </div> */}
       </div>
     </>
   );

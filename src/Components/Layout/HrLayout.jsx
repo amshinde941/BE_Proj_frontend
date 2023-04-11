@@ -48,7 +48,7 @@ const AdminSidebar = [
     name: "Retention",
     to: "/hr/retention",
     switch: "retention",
-  },
+  }
 ];
 
 const HrLayout = ({ children, setCurrent }) => {

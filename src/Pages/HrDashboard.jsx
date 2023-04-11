@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { HrLayout } from "../Components/Layout";
 import { AddEmployee, Appraisals, Onboarding, Recruitment, Retention, Dashboard } from "../Components/Hr"
+import { Login, SignUp } from "../Components/Authentication";
 
 const HrDashboard = () => {
   const [current, setCurrent] = useState("classes");
@@ -26,9 +27,19 @@ const HrDashboard = () => {
 
       case "appraisals":
         return <Appraisals />
+        break;
 
       case "retention":
         return <Retention />
+        break;
+
+      case "login":
+        return <Login />
+        break;
+
+      case "register":
+        return <SignUp />
+        break;
 
       default:
         return (

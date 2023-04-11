@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Login, SignUp } from "../Components/Authentication";
 import {
   Home,
   HrDashboard,
@@ -21,6 +22,8 @@ const AppRouter = () => {
         <Route path="/hr/onboarding" element={<HrDashboard />} />
         <Route path="/hr/appraisals" element={<HrDashboard />} />
         <Route path="/hr/retention" element={<HrDashboard />} />
+        <Route path="/hr/login" element={<Login />} />
+        <Route path="/hr/register" element={<SignUp />} />
 
         {/* <Route path="/teacher/classes" element={<EmployeeDashboard />} /> */}
         {/* <Route path="/teacher/students" element={<EmployeeDashboard />} /> */}
