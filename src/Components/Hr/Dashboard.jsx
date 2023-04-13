@@ -9,7 +9,7 @@ const Dashboard = () => {
   return (
     <>
       <div className="m-10">
-        <button
+        {/* <button
           class="mr-1.5 inline-block rounded bg-primary px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
           type="button"
           data-te-offcanvas-toggle
@@ -18,7 +18,7 @@ const Dashboard = () => {
           data-te-ripple-init
           data-te-ripple-color="light"
         >
-          Toggle top offcanvas
+          Toggle top offcanvas kfdvkmdf
         </button>
 
         <div
@@ -58,8 +58,10 @@ const Dashboard = () => {
               </span>
             </button>
           </div>
-          <div class="flex-grow overflow-y-auto p-4">...</div>
-        </div>
+          <div class="flex-grow overflow-y-auto p-4">
+            <h1>Hoi msdc</h1>
+          </div>
+        </div> */}
 
         {/* PROJECTS */}
         <h1 className="text-2xl font-bold">Projects</h1>
