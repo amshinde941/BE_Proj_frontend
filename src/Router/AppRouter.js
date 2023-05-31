@@ -8,6 +8,7 @@ import {
   AdminDashboard,
   NotFound,
 } from "../Pages";
+import EmployeeDetails from "../Components/Hr/EmployeeDetails";
 
 const AppRouter = () => {
   return (
@@ -22,6 +23,7 @@ const AppRouter = () => {
         <Route path="/hr/onboarding" element={<HrDashboard />} />
         <Route path="/hr/appraisals" element={<HrDashboard />} />
         <Route path="/hr/retention" element={<HrDashboard />} />
+        <Route path="/hr/retention/employee/:name" element={<EmployeeDetails />} />
         <Route path="/hr/login" element={<Login />} />
         <Route path="/hr/register" element={<SignUp />} />
 

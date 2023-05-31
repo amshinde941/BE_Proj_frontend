@@ -1,54 +1,107 @@
 import React, { useState } from "react";
-import { Checkbox } from "../CheckBox";
 import { RetentionData } from "../../Models/RetentionData";
-import { Button } from "../Button/Button";
+import { SecondaryButton } from "../Button";
+import { Table } from "../Table";
+import { Link } from "react-router-dom";
+
+import { useNavigate } from "react-router-dom";
+
+const getData = () => {
+  return [...RetentionData];
+};
+
+
 
 const Retention = () => {
-  const [checkboxes, setCheckboxes] = useState([
-    { id: 1, text: "Important / Non-Replacable Employees", checked: false },
-    { id: 2, text: "High Risk Employees", checked: false },
-    { id: 3, text: "Medium Risk Employees", checked: false },
-    { id: 4, text: "Low Risk Employees", checked: false },
-  ]);
 
-  const handleChange = (id) => {
-    setCheckboxes(
-      checkboxes.map((checkbox) => {
-        if (checkbox.id === id) {
-          checkbox.checked = !checkbox.checked;
-        }
-        return checkbox;
-      })
-    );
+  const [selectedRow, setSelectedRow] = useState(null);
+  const navigate = useNavigate();
+
+  const handleViewClick = (row) => {
+    // Perform any necessary logic or actions before redirecting
+  
+    // Redirect to another page, passing the employeeId as a parameter
+    setSelectedRow(row);
+    navigate(`/hr/retention/employee`);
   };
+
+  const columns = React.useMemo(
+    () => [
+      {
+        Header: "Full Name",
+        accessor: "name",
+      },
+      {
+        Header: "Role",
+        accessor: "jobRole",
+      },
+      {
+        Header: "Office",
+        accessor: "location",
+      },
+      {
+        Header: "Department",
+        accessor: "department",
+      },
+      {
+        Header: "Action",
+        Cell: ({ row }) => (
+          <Link to={`/hr/retention/employee/${row.original.name}`}>
+            <SecondaryButton>View</SecondaryButton>
+          </Link>
+        ),
+      },
+    ],
+    []
+  );
+
+  const data = React.useMemo(() => getData(), []);
 
   return (
     <>
       <div className="m-10">
         {/* Filters  */}
-        <h1 className="text-2xl font-bold">Filters</h1>
+        <h1 className="text-2xl font-bold">Employee List</h1>
         <hr className="my-2" />
-        <h2>Sort By</h2>
-        <div className="flex flex-wrap justify-between">
-          {checkboxes.map((checkbox) => (
-            <div key={checkbox.id} className="w-1/4 p-2">
-              <label className="block text-gray-700 font-medium">
-                <input type="checkbox" className="mr-2" />
-                {checkbox.text}
-              </label>
-            </div>
-          ))}
+        <div className="flex gap-2 flex-col">
+          <Table columns={columns} data={data} />
         </div>
+      </div>
+    </>
+  );
+};
 
-        {/* Retention Information */}
-        <h1 className="text-2xl font-bold my-4">Retention Information</h1>
+export default Retention;
+
+
+// const [checkboxes, setCheckboxes] = useState([
+//   { id: 1, text: "Important / Non-Replacable Employees", checked: false },
+//   { id: 2, text: "High Risk Employees", checked: false },
+//   { id: 3, text: "Medium Risk Employees", checked: false },
+//   { id: 4, text: "Low Risk Employees", checked: false },
+// ]);
+
+// const handleChange = (id) => {
+//   setCheckboxes(
+//     checkboxes.map((checkbox) => {
+//       if (checkbox.id === id) {
+//         checkbox.checked = !checkbox.checked;
+//       }
+//       return checkbox;
+//     })
+//   );
+// };
+
+
+ {/* Retention Information */}
+        {/* <h1 className="text-2xl font-bold my-4">Retention Information</h1>
         <hr className="my-2" />
 
         <div className="mt-5 bg-slate-50 p-4 rounded-md flex flex-col gap-3 shadow hover:shadow-md cursor-pointer">
           {RetentionData.map((retention) => {
             return (
               <>
-                
+
                 <div className="grid grid-cols-3">
                   <div className="col-span-1">
                     <h2 className="text-sky-800 mb-3 text-xl">{retention.name}</h2>
@@ -72,7 +125,7 @@ const Retention = () => {
                   <div class="col-span-1">
                     <p className="text-sky-800 mb-3 text-xl"> Retention Rate Of Particular Action </p>
                     <div className="grid grid-cols-2">
-                    <span className="col-span-1 text-lg text-red-400">{retention.risk}</span>
+                      <span className="col-span-1 text-lg text-red-400">{retention.risk}</span>
                       <span className="col-span-1">
                         <Button>Take Action</Button>
                       </span>
@@ -88,10 +141,4 @@ const Retention = () => {
               </>
             );
           })}
-        </div>
-      </div>
-    </>
-  );
-};
-
-export default Retention;
+        </div> */}
