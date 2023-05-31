@@ -17,13 +17,82 @@ const Retention = () => {
   const [selectedRow, setSelectedRow] = useState(null);
   const navigate = useNavigate();
 
-  const handleViewClick = (row) => {
-    // Perform any necessary logic or actions before redirecting
-  
-    // Redirect to another page, passing the employeeId as a parameter
-    setSelectedRow(row);
-    navigate(`/hr/retention/employee`);
+  const handleViewClick = async (row) => {
+    try {
+      console.log(row);
+      setSelectedRow(row);
+
+      // console.log(row.name);
+
+      const requestData = {
+        Age: row.Age,
+        DistanceFromHome: row.DistanceFromHome,
+        EnvironmentSatisfaction: row.EnvironmentSatisfaction,
+        Gender: row.Gender,
+        HourlyRate: row.HourlyRate,
+        JobInvolvement: row.JobInvolvement,
+        JobLevel: row.JobLevel,
+        JobSatisfaction: row.JobSatisfaction,
+        MonthlyIncome: row.MonthlyIncome,
+        NumCompaniesWorked: row.NumCompaniesWorked,
+        OverTime: row.OverTime,
+        PercentSalaryHike: row.PercentSalaryHike,
+        PerformanceRating: row.PerformanceRating,
+        RelationshipSatisfaction: row.RelationshipSatisfaction,
+        StockOptionLevel: row.StockOptionLevel,
+        TotalWorkingYears: row.TotalWorkingYears,
+        TrainingTimesLastYear: row.TrainingTimesLastYear,
+        WorkLifeBalance: row.WorkLifeBalance,
+        YearsAtCompany: row.YearsAtCompany,
+        YearsInCurrentRole: row.YearsInCurrentRole,
+        YearsSinceLastPromotion: row.YearsSinceLastPromotion,
+        YearsWithCurrManager: row.YearsWithCurrManager,
+        AVG_POS: row.AVG_POS,
+        AVG_NEG: row.AVG_NEG,
+        BusinessTravel_Non_Travel: row.BusinessTravel_Non_Travel,
+        BusinessTravel_Travel_Frequently: row.BusinessTravel_Travel_Frequently,
+        BusinessTravel_Travel_Rarely: row.BusinessTravel_Travel_Rarely,
+        MaritalStatus_Divorced: row.MaritalStatus_Divorced,
+        MaritalStatus_Married: row.MaritalStatus_Married,
+        MaritalStatus_Single: row.MaritalStatus_Single,
+        JobRole_AESP: row.JobRole_AESP,
+        JobRole_Corporate: row.JobRole_Corporate,
+        JobRole_Director: row.JobRole_Director,
+        JobRole_ESP: row.JobRole_ESP,
+        JobRole_Manager: row.JobRole_Manager,
+        JobRole_Sales: row.JobRole_Sales,
+      };
+
+      console.log(requestData);
+
+      // Send the POST request
+      const response = await fetch("http://127.0.0.1:8000/getresult", {
+        method: "post",
+        mode: "cors", // no-cors, *cors, same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, *same-origin, omit
+        headers: {
+          "Content-Type": "application/json",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: "follow", // manual, *follow, error
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify(requestData),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        navigate(`/hr/retention/employee/${row.name}`, { state: { employee: data } });
+        // console.log(employee);
+      } else {
+        const errorData = await response.json();
+        console.error("Error:", errorData);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
+
 
   const columns = React.useMemo(
     () => [
@@ -47,7 +116,7 @@ const Retention = () => {
         Header: "Action",
         Cell: ({ row }) => (
           <Link to={`/hr/retention/employee/${row.original.name}`}>
-            <SecondaryButton>View</SecondaryButton>
+            <SecondaryButton onClick={() => handleViewClick(row.original)}>View</SecondaryButton>
           </Link>
         ),
       },
@@ -72,73 +141,3 @@ const Retention = () => {
 };
 
 export default Retention;
-
-
-// const [checkboxes, setCheckboxes] = useState([
-//   { id: 1, text: "Important / Non-Replacable Employees", checked: false },
-//   { id: 2, text: "High Risk Employees", checked: false },
-//   { id: 3, text: "Medium Risk Employees", checked: false },
-//   { id: 4, text: "Low Risk Employees", checked: false },
-// ]);
-
-// const handleChange = (id) => {
-//   setCheckboxes(
-//     checkboxes.map((checkbox) => {
-//       if (checkbox.id === id) {
-//         checkbox.checked = !checkbox.checked;
-//       }
-//       return checkbox;
-//     })
-//   );
-// };
-
-
- {/* Retention Information */}
-        {/* <h1 className="text-2xl font-bold my-4">Retention Information</h1>
-        <hr className="my-2" />
-
-        <div className="mt-5 bg-slate-50 p-4 rounded-md flex flex-col gap-3 shadow hover:shadow-md cursor-pointer">
-          {RetentionData.map((retention) => {
-            return (
-              <>
-
-                <div className="grid grid-cols-3">
-                  <div className="col-span-1">
-                    <h2 className="text-sky-800 mb-3 text-xl">{retention.name}</h2>
-                    <h6>Job Role: {retention.jobRole}</h6>
-                    <h3>Experience: {retention.experience}</h3>
-                    <h3>Location: {retention.location}</h3>
-                    <h3>Current Salary: {retention.cur_sal}</h3>
-                    <h3>Market Salary: {retention.market_sal}</h3>
-                    <h3>Current Leaves: {retention.cur_leaves}</h3>
-                    <h3>Manager Rating: {retention.rating}</h3>
-                  </div>
-                  <div class="col-span-1">
-                    <p className="text-sky-800 mb-3 text-xl"> Reasons To Leave Job </p>
-                    <h2>1.00 &lt;= Job Level &lt;= {retention.reasons.jobLevel}</h2>
-                    <h2>1.00 &lt;= Job Satisfaction &lt;= {retention.reasons.jobSat}</h2>
-                    <h2>1.00 &lt;= Role Satisfaction &lt;= {retention.reasons.curRole}</h2>
-                    <h2>1.00 &lt;= Salary Satisfaction &lt;= {retention.reasons.salary}</h2>
-                    <h2>1.00 &lt;= Location Satisfaction &lt;= {retention.reasons.location}</h2>
-                    <h2>1.00 &lt;= Timings Satisfaction &lt;= {retention.reasons.timings}</h2>
-                  </div>
-                  <div class="col-span-1">
-                    <p className="text-sky-800 mb-3 text-xl"> Retention Rate Of Particular Action </p>
-                    <div className="grid grid-cols-2">
-                      <span className="col-span-1 text-lg text-red-400">{retention.risk}</span>
-                      <span className="col-span-1">
-                        <Button>Take Action</Button>
-                      </span>
-                    </div>
-                    <h2>Job Satisfaction: {retention.actions.jobLevel}</h2>
-                    <h2>Increase in Role: {retention.actions.curRole}</h2>
-                    <h2>Increase in Salary: {retention.actions.salary}</h2>
-                    <h2>Change in Location: {retention.actions.location}</h2>
-                    <h2>Change in Timings: {retention.actions.timings}</h2>
-                  </div>
-                </div>
-                <hr className="my-2" />
-              </>
-            );
-          })}
-        </div> */}

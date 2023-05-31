@@ -25,24 +25,24 @@ const AdminSidebar = [
     to: "/hr/add-employee",
     switch: "add-employee",
   },
-  {
-    id: 3,
-    name: "Recruitment",
-    to: "/hr/recruitment",
-    switch: "recruitment",
-  },
-  {
-    id: 4,
-    name: "Onboarding",
-    to: "/hr/onboarding",
-    switch: "onboarding",
-  },
-  {
-    id: 5,
-    name: "Appraisals",
-    to: "/hr/appraisals",
-    switch: "appraisals",
-  },
+  // {
+  //   id: 3,
+  //   name: "Recruitment",
+  //   to: "/hr/recruitment",
+  //   switch: "recruitment",
+  // },
+  // {
+  //   id: 4,
+  //   name: "Onboarding",
+  //   to: "/hr/onboarding",
+  //   switch: "onboarding",
+  // },
+  // {
+  //   id: 5,
+  //   name: "Appraisals",
+  //   to: "/hr/appraisals",
+  //   switch: "appraisals",
+  // },
   {
     id: 6,
     name: "Retention",

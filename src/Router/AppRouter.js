@@ -19,9 +19,9 @@ const AppRouter = () => {
 
         <Route path="/hr/dashboard" element={<HrDashboard />} />
         <Route path="/hr/add-employee" element={<HrDashboard />} />
-        <Route path="/hr/recruitment" element={<HrDashboard />} />
+        {/* <Route path="/hr/recruitment" element={<HrDashboard />} />
         <Route path="/hr/onboarding" element={<HrDashboard />} />
-        <Route path="/hr/appraisals" element={<HrDashboard />} />
+        <Route path="/hr/appraisals" element={<HrDashboard />} /> */}
         <Route path="/hr/retention" element={<HrDashboard />} />
         <Route path="/hr/retention/employee/:name" element={<EmployeeDetails />} />
         <Route path="/hr/login" element={<Login />} />

@@ -4,6 +4,9 @@ import * as te from 'tw-elements';
 import { ProjectsData } from "../../Models/ProjectsData";
 import { SecondaryButton } from "../Button";
 import { BarChart, LineChart, PieChart } from "../Charts";
+import Attrition from "./Attrition";
+import Hiring from "./Hiring";
+import Exploratory from "./Exploratory";
 
 const Dashboard = () => {
   return (
@@ -115,6 +118,11 @@ const Dashboard = () => {
           <LineChart />
           <PieChart />
         </div>
+
+
+        <Attrition />
+        <Hiring />
+        <Exploratory />
       </div>
     </>
   );

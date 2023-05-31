@@ -17,17 +17,17 @@ const HrDashboard = () => {
         return <AddEmployee />;
         break;
 
-      case "recruitment":
-        return <Recruitment />;
-        break;
+      // case "recruitment":
+      //   return <Recruitment />;
+      //   break;
 
-      case "onboarding":
-        return <Onboarding />;
-        break;
+      // case "onboarding":
+      //   return <Onboarding />;
+      //   break;
 
-      case "appraisals":
-        return <Appraisals />
-        break;
+      // case "appraisals":
+      //   return <Appraisals />
+      //   break;
 
       case "retention":
         return <Retention />
