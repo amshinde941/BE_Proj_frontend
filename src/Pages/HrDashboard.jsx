@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HrLayout } from "../Components/Layout";
 import { AddEmployee, Appraisals, Onboarding, Recruitment, Retention, Dashboard } from "../Components/Hr"
 import { Login, SignUp } from "../Components/Authentication";
@@ -6,6 +6,54 @@ import { Login, SignUp } from "../Components/Authentication";
 const HrDashboard = () => {
   const [current, setCurrent] = useState("classes");
   console.log(current);
+
+  const addToLocalStorage = (data) => {
+    localStorage.setItem("employees", JSON.stringify(data));
+  };
+
+  const getStateFromLocalStorage = () => {
+    let data = localStorage.getItem("employees");
+    if (data) {
+      console.log(data);
+      return data;
+    } else {
+      localStorage.setItem("employees", JSON.stringify([]));
+      return [];
+    }
+  };
+
+  const fetchEmployees = async (row) => {
+    try {
+      const response = await fetch("http://localhost:4000/employee/getallemployees", {
+        method: "get",
+        mode: "cors", // no-cors, *cors, same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, *same-origin, omit
+        headers: {
+          "Content-Type": "application/json",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: "follow", // manual, *follow, error
+        referrerPolicy: "no-referrer",
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log('-> ', data);
+        addToLocalStorage(data);
+      } else {
+        const errorData = await response.json();
+        console.error("Error:", errorData);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchEmployees();
+    getStateFromLocalStorage();
+  });
 
   const renderComp = () => {
     switch (current) {
