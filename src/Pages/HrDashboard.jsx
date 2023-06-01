@@ -3,7 +3,12 @@ import { HrLayout } from "../Components/Layout";
 import { AddEmployee, Appraisals, Onboarding, Recruitment, Retention, Dashboard } from "../Components/Hr"
 import { Login, SignUp } from "../Components/Authentication";
 
+import { useNavigate } from "react-router-dom";
+
 const HrDashboard = () => {
+
+  const navigate = useNavigate();
+
   const [current, setCurrent] = useState("classes");
   console.log(current);
 
@@ -14,7 +19,7 @@ const HrDashboard = () => {
   const getStateFromLocalStorage = () => {
     let data = localStorage.getItem("employees");
     if (data) {
-      console.log(data);
+      // console.log(data);
       return data;
     } else {
       localStorage.setItem("employees", JSON.stringify([]));
@@ -39,7 +44,8 @@ const HrDashboard = () => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log('-> ', data);
+        // console.log('-> ', data);
+        // navigate(`/hr/retention/`, { state: { employee: data } });
         addToLocalStorage(data);
       } else {
         const errorData = await response.json();

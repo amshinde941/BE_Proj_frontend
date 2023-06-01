@@ -120,6 +120,7 @@ const Table = ({ columns, data }) => {
                 >
                   {page.map((row, i) => {
                     prepareRow(row);
+                    console.log("Table : " + JSON.stringify(row.getRowProps()));
                     return (
                       <tr {...row.getRowProps()}>
                         {row.cells.map((cell) => {

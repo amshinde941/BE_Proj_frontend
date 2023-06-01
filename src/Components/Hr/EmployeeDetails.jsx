@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { RetentionData } from "../../Models/RetentionData";
 import { PrimaryButton, SecondaryButton } from "../Button";
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 
 import { useLocation } from "react-router-dom";
@@ -10,28 +10,63 @@ import { useLocation } from "react-router-dom";
 
 const EmployeeDetails = () => {
 
-    // useEffect(() => {
-    //     const slider = document.getElementById('salary-slider');
-    //     const output = document.getElementById('salary-output');
+    
 
-    //     slider.addEventListener('input', function () {
-    //         output.textContent = `${this.value}%`;
-    //     });
-    // }, []);
+
+//     const [hasReloaded, setHasReloaded] = useState(false);
+
+//   useEffect(() => {
+//     if (!hasReloaded) {
+//       // Reload the window
+//       window.location.reload();
+//       setHasReloaded(true);
+//     }
+//   }, [hasReloaded]);
+
+    const getStateFromLocalStorage = () => {
+        let data = localStorage.getItem("employees");
+        if (data) {
+          data = JSON.parse(data);
+          console.log("Nice : " + data);
+          return data;
+        } else {
+          localStorage.setItem("employees", JSON.stringify([]));
+          return [];
+        }
+      };
+
+    const [employeeDetails, setEmployee] = useState(getStateFromLocalStorage());
+
+    // window.location.reload();
 
     const location = useLocation();
     const { state } = location;
 
     const employeeData = state && state.employee;
+    console.log( employeeDetails);
+
+    let risk = "";
+
+    if(employeeData.leaving_percentage >= 75){
+        risk = "high";
+    }
+    else if(employeeData.leaving_percentage>=50 && employeeData.leaving_percentage<=74){
+        risk = "medium"
+    }
+    else{
+        risk = "low";
+    }
 
     const { name } = useParams();
 
-    // Find the employee data based on the name parameter
-    const employee = RetentionData.find((employee) => employee.name === name);
 
-    if (!employee) {
-        return <div>Employee not found</div>;
-    }
+    // Find the employee data based on the name parameter
+    const employee = employeeDetails.find((employee) => employee.name === name);
+    console.log("emp -> ", employee)
+
+    // if (!employee) {a
+    //     return <div>Employee not found</div>;
+    // }
 
     // Retrieve the employee details based on the employeeId
 
@@ -47,8 +82,24 @@ const EmployeeDetails = () => {
                             <hr className="my-2" />
 
                             <div className="grid grid-cols-2 gap-4">
+                            <p className="text-left font-bold">Name:</p>
+                                <p className="text-right">{employee.name}</p>
+                                <hr />
+                                <hr />
+
+                                <p className="text-left font-bold">Email:</p>
+                                <p className="text-right">{employee.email} </p>
+                                <hr />
+                                <hr />
+
+                                <p className="text-left font-bold">Contact:</p>
+                                <p className="text-right">{employee.contact} </p>
+                                <hr />
+                                <hr />
+
+
                                 <p className="text-left font-bold">Experience:</p>
-                                <p className="text-right">{employee.YearsAtCompany} years</p>
+                                <p className="text-right">{employee.totalWorkingYears} years</p>
                                 <hr />
                                 <hr />
 
@@ -64,7 +115,7 @@ const EmployeeDetails = () => {
                                 <hr />
 
                                 <p className="text-left font-bold">Current Salary:</p>
-                                <p className="text-right">{employee.MonthlyIncome}</p>
+                                <p className="text-right">${employee.monthlyIncome}</p>
                                 <hr />
                                 <hr />
 
@@ -79,19 +130,7 @@ const EmployeeDetails = () => {
                                 <hr />
 
                                 <p className="text-left font-bold">Risk:</p>
-                                <p className="text-right">{employee.risk}</p>
-                                <hr />
-                                <hr />
-
-                                <div className="col-span-1 flex items-center">
-                                    <p className="font-bold">Reasons of Attritions:</p>
-                                </div>
-                                <div className="col-span-1">
-                                    <p className="text-right">= JobLevel &lt;= {employee.JobLevel}</p>
-                                    <p className="text-right">= Job Satisfaction &lt;= {employee.JobSatisfaction}</p>
-                                    <p className="text-right">= Salary &lt;= {employee.MonthlyIncome}</p>
-                                    <p className="text-right">= Location &lt;= {employee.location}</p>
-                                </div>
+                                <p className="text-right">{risk}</p>
                                 <hr />
                                 <hr />
                             </div>
